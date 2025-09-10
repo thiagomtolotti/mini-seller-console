@@ -1,5 +1,11 @@
+import LeadsListTable from "./components/LeadsListTable";
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <LeadsListTable />
+    </>
+  );
 }
 
 export default App;
