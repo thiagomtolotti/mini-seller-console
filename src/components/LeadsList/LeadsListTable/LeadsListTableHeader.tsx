@@ -1,16 +1,8 @@
-import { ChevronUpDownIcon } from "@heroicons/react/16/solid";
 import TableHeadCell from "./TableHeadCell";
+import ScoreHeaderCell from "./ScoreHeaderCell";
 
 export default function LeadsListTableHeader() {
-  const columns = [
-    "Name",
-    "Company",
-    "Score",
-    <div className="flex gap-2 cursor-pointer">
-      Status
-      <ChevronUpDownIcon className="w-4" />
-    </div>,
-  ];
+  const columns = ["Name", "Company", <ScoreHeaderCell />, "Status"];
 
   return (
     <thead>
