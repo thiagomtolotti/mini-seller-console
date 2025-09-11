@@ -1,9 +1,9 @@
-import LeadsListTable from "./components/LeadsListTable";
+import LeadsList from "./components/LeadsList";
 
 function App() {
   return (
     <>
-      <LeadsListTable />
+      <LeadsList />
     </>
   );
 }
