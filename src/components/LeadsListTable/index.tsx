@@ -1,12 +1,18 @@
+import { useState } from "react";
+
+import type { Lead } from "@/types/lead";
+
 import useLeadsList from "@/hooks/useLeadsList";
 
 import LeadsListTableRow from "./LeadsListTableRow";
 import LeadsListTableHeader from "./LeadsListTableHeader";
 import LeadsListTableSkeleton from "./LeadsListTableSkeleton";
+import LeadDetailPanel from "../LeadDetailPanel";
 
 import LeadsListTableFilters from "../LeadsListFilters";
 
 export default function LeadsListTable() {
+  const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
   const { leads, pending } = useLeadsList();
 
   return (
@@ -20,10 +26,19 @@ export default function LeadsListTable() {
           {pending && <LeadsListTableSkeleton />}
 
           {leads?.map((lead) => (
-            <LeadsListTableRow key={lead.id} lead={lead} />
+            <LeadsListTableRow
+              key={lead.id}
+              lead={lead}
+              onClick={() => setSelectedLead(lead)}
+            />
           ))}
         </tbody>
       </table>
+
+      <LeadDetailPanel
+        selectedLead={selectedLead}
+        onClose={() => setSelectedLead(null)}
+      />
     </div>
   );
 }
