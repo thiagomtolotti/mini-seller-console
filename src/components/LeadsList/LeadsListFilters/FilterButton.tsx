@@ -7,15 +7,16 @@ import useCloseOnClickOutside from "@/hooks/useCloseOnClickOutside";
 import StatusFilterDropdown from "./StatusFilterDropdown";
 
 import { FunnelIcon } from "@heroicons/react/16/solid";
+import type { Filters } from "@/contexts/LeadsListProvider";
 
 export interface FilterButtonProps {
   statusFilter: LeadStatus[];
-  setStatusFilter: React.Dispatch<React.SetStateAction<LeadStatus[]>>;
+  setFilters: React.Dispatch<React.SetStateAction<Filters>>;
 }
 
 export default function FilterButton({
   statusFilter,
-  setStatusFilter,
+  setFilters,
 }: FilterButtonProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -37,7 +38,7 @@ export default function FilterButton({
       {isOpen && (
         <StatusFilterDropdown
           statusFilter={statusFilter}
-          setStatusFilter={setStatusFilter}
+          setFilters={setFilters}
         />
       )}
     </div>

@@ -1,15 +1,11 @@
-import type { Lead, LeadStatus } from "@/types/lead";
-import type { Order } from "@/types/order";
+import type { Lead } from "@/types/lead";
 
 import { createContext } from "react";
+import type { Filters } from "./LeadsListProvider";
 
 interface ILeadsListContext {
-  search: string;
-  setSearch: React.Dispatch<React.SetStateAction<string>>;
-  statusFilter: LeadStatus[];
-  setStatusFilter: React.Dispatch<React.SetStateAction<LeadStatus[]>>;
-  scoreOrder: Order;
-  setScoreOrder: React.Dispatch<React.SetStateAction<Order>>;
+  filters: Filters;
+  setFilters: React.Dispatch<React.SetStateAction<Filters>>;
   leads: Lead[] | undefined;
   pendingLeads: boolean;
   leadsStore: Lead[];

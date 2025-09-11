@@ -4,13 +4,19 @@ import type { FilterButtonProps } from "./FilterButton";
 
 export default function StatusFilterDropdown({
   statusFilter,
-  setStatusFilter,
+  setFilters,
 }: FilterButtonProps) {
   function handleChange(ev: React.ChangeEvent<HTMLInputElement>) {
     if (ev.target.checked) {
-      setStatusFilter((prev) => [...prev, ev.target.value as LeadStatus]);
+      setFilters((prev) => ({
+        ...prev,
+        status: [...prev.status, ev.target.value as LeadStatus],
+      }));
     } else {
-      setStatusFilter((prev) => prev.filter((s) => s !== ev.target.value));
+      setFilters((prev) => ({
+        ...prev,
+        status: prev.status.filter((s) => s !== ev.target.value),
+      }));
     }
   }
 

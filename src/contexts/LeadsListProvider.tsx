@@ -7,55 +7,47 @@ import { Order } from "@/types/order.d";
 
 import useLeadsList from "@/hooks/useLeadsList";
 
+import useLeadsSearchFilter from "@/hooks/useLeadsSearchFilter";
+import useLeadsStatusFilter from "@/hooks/useLeadsStatusFilter";
+import useOrderLeadsByScore from "@/hooks/useOrderLeadsByScore";
+
+export interface Filters {
+  search: string;
+  status: LeadStatus[];
+  score: Order;
+}
+
 export const LeadsListProvider = ({
   children,
 }: {
   children: React.ReactNode;
 }) => {
   const { leads, pending } = useLeadsList();
+
   const [leadsStore, setLeadsStore] = useState<Lead[]>([]);
 
   useEffect(() => {
-    if (leads) {
-      setLeadsStore(leads);
-    }
+    setLeadsStore(leads ?? []);
 
     return () => setLeadsStore([]);
   }, [leads]);
 
-  const [search, setSearch] = useState("");
-  const [statusFilter, setStatusFilter] = useState<LeadStatus[]>([]);
-  const [scoreOrder, setScoreOrder] = useState<Order>(Order.None);
+  const [filters, setFilters] = useState<Filters>({
+    search: "",
+    status: [],
+    score: Order.None,
+  });
 
-  const filteredLeads = leadsStore?.filter(
-    (lead) =>
-      (lead.company.toLowerCase().includes(search.toLowerCase()) ||
-        lead.name.toLowerCase().includes(search.toLowerCase())) &&
-      (statusFilter.includes(lead.status) || statusFilter.length === 0)
-  );
-
-  const orderedLeads = (() => {
-    if (scoreOrder === Order.Ascending) {
-      return filteredLeads?.sort((a, b) => b.score - a.score);
-    }
-
-    if (scoreOrder === Order.Descending) {
-      return filteredLeads?.sort((a, b) => a.score - b.score);
-    }
-
-    return filteredLeads;
-  })();
+  const searchFiltered = useLeadsSearchFilter(leadsStore, filters.search);
+  const statusFiltered = useLeadsStatusFilter(searchFiltered, filters.status);
+  const scoreOrdered = useOrderLeadsByScore(statusFiltered, filters.score);
 
   return (
     <LeadsListContext.Provider
       value={{
-        search,
-        setSearch,
-        statusFilter,
-        setStatusFilter,
-        scoreOrder,
-        setScoreOrder,
-        leads: orderedLeads,
+        filters,
+        setFilters,
+        leads: scoreOrdered,
         pendingLeads: pending,
         leadsStore,
         setLeadsStore,
