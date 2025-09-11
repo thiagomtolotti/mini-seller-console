@@ -2,15 +2,18 @@ import type { Lead, LeadStatus } from "@/types/lead";
 
 import TableCell from "./TableCell";
 import clsx from "clsx";
+import { CurrencyDollarIcon } from "@heroicons/react/24/outline";
 
 interface LeadsListTableRowProps
   extends React.HTMLAttributes<HTMLTableRowElement> {
   lead: Lead;
+  onOpportunityClick?: () => void;
 }
 
 export default function LeadsListTableRow({
   lead,
   className,
+  onOpportunityClick,
   ...props
 }: LeadsListTableRowProps) {
   return (
@@ -22,10 +25,23 @@ export default function LeadsListTableRow({
       {...props}
     >
       <TableCell className="rounded-l-xl">{lead.name}</TableCell>
+
       <TableCell>{lead.company}</TableCell>
+
       <TableCell>{lead.score}</TableCell>
-      <TableCell className="rounded-r-xl">
+
+      <TableCell>
         <LeadStatusBadge status={lead.status} />
+      </TableCell>
+
+      <TableCell
+        className="rounded-r-xl cursor-default w-10"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <CurrencyDollarIcon
+          onClick={onOpportunityClick}
+          className="ml-auto w-10 p-2 hover:bg-slate-300 rounded-full transition-all cursor-pointer"
+        />
       </TableCell>
     </tr>
   );

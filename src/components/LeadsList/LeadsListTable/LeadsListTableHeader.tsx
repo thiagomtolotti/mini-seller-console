@@ -2,7 +2,7 @@ import TableHeadCell from "./TableHeadCell";
 import ScoreHeaderCell from "./ScoreHeaderCell";
 
 export default function LeadsListTableHeader() {
-  const columns = ["Name", "Company", <ScoreHeaderCell />, "Status"];
+  const columns = ["Name", "Company", <ScoreHeaderCell />, "Status", "Actions"];
 
   return (
     <thead>

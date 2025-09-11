@@ -10,9 +10,13 @@ import LeadsListTableSkeleton from "./LeadsListTableSkeleton";
 
 interface LeadsListTableProps {
   selectLead: (lead: Lead) => void;
+  selectOpportunity: (lead: Lead) => void;
 }
 
-export default function LeadsListTable({ selectLead }: LeadsListTableProps) {
+export default function LeadsListTable({
+  selectLead,
+  selectOpportunity,
+}: LeadsListTableProps) {
   const { leads, pendingLeads } = useContext(LeadsListContext);
 
   return (
@@ -27,6 +31,7 @@ export default function LeadsListTable({ selectLead }: LeadsListTableProps) {
             key={lead.id}
             lead={lead}
             onClick={() => selectLead(lead)}
+            onOpportunityClick={() => selectOpportunity(lead)}
           />
         ))}
       </tbody>
