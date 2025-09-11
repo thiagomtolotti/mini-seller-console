@@ -11,5 +11,5 @@ export interface Lead {
   email: string;
   source: string;
   score: number;
-  status: string;
+  status: LeadStatus;
 }

@@ -12,7 +12,7 @@ export default function TableHeadCell({
   return (
     <TableCellBase
       component="th"
-      className={clsx("text-left font-medium", className)}
+      className={clsx("text-left text-slate-900 font-medium pb-6", className)}
       {...props}
     />
   );
