@@ -1,5 +1,3 @@
-import useLeadsList from "@/hooks/useLeadsList";
-
 import type { Lead } from "@/types/lead";
 
 import LeadsListTableRow from "./LeadsListTableRow";
@@ -7,14 +5,16 @@ import LeadsListTableHeader from "./LeadsListTableHeader";
 import LeadsListTableSkeleton from "./LeadsListTableSkeleton";
 
 interface LeadsListTableProps {
-  setSelectedLead: (lead: Lead) => void;
+  leads?: Lead[];
+  pending: boolean;
+  selectLead: (lead: Lead) => void;
 }
 
 export default function LeadsListTable({
-  setSelectedLead,
+  leads,
+  pending,
+  selectLead,
 }: LeadsListTableProps) {
-  const { leads, pending } = useLeadsList();
-
   return (
     <table className="w-full">
       <LeadsListTableHeader />
@@ -26,7 +26,7 @@ export default function LeadsListTable({
           <LeadsListTableRow
             key={lead.id}
             lead={lead}
-            onClick={() => setSelectedLead(lead)}
+            onClick={() => selectLead(lead)}
           />
         ))}
       </tbody>
