@@ -12,6 +12,8 @@ interface ILeadsListContext {
   setScoreOrder: React.Dispatch<React.SetStateAction<Order>>;
   leads: Lead[] | undefined;
   pendingLeads: boolean;
+  leadsStore: Lead[];
+  setLeadsStore: React.Dispatch<React.SetStateAction<Lead[]>>;
 }
 
 export const LeadsListContext = createContext({} as ILeadsListContext);

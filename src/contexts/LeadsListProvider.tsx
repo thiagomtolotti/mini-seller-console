@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { LeadsListContext } from "./LeadsListContext";
 
-import type { LeadStatus } from "@/types/lead";
+import type { Lead, LeadStatus } from "@/types/lead";
 import { Order } from "@/types/order.d";
 
 import useLeadsList from "@/hooks/useLeadsList";
@@ -13,12 +13,21 @@ export const LeadsListProvider = ({
   children: React.ReactNode;
 }) => {
   const { leads, pending } = useLeadsList();
+  const [leadsStore, setLeadsStore] = useState<Lead[]>([]);
+
+  useEffect(() => {
+    if (leads) {
+      setLeadsStore(leads);
+    }
+
+    return () => setLeadsStore([]);
+  }, [leads]);
 
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<LeadStatus[]>([]);
   const [scoreOrder, setScoreOrder] = useState<Order>(Order.None);
 
-  const filteredLeads = leads?.filter(
+  const filteredLeads = leadsStore?.filter(
     (lead) =>
       (lead.company.toLowerCase().includes(search.toLowerCase()) ||
         lead.name.toLowerCase().includes(search.toLowerCase())) &&
@@ -48,6 +57,8 @@ export const LeadsListProvider = ({
         setScoreOrder,
         leads: orderedLeads,
         pendingLeads: pending,
+        leadsStore,
+        setLeadsStore,
       }}
     >
       {children}

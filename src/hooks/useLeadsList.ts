@@ -12,7 +12,7 @@ export default function useLeadsList() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setLeads(leadsList);
+      setLeads(leadsList as Lead[]);
       setPending(false);
     }, PENDING_TIME);
 
