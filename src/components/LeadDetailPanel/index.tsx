@@ -1,10 +1,12 @@
-import type { Lead } from "@/types/lead";
+import type { Lead } from "@/types/lead.d";
 
 import SlideOverPanel from "./SlideOverPanel";
+import { XMarkIcon } from "@heroicons/react/16/solid";
+import LeadDetailForm from "./LeadDetailForm";
 
 interface LeadDetailPanelProps {
   selectedLead: Lead | null;
-  onClose?: () => void;
+  onClose: () => void;
 }
 
 export default function LeadDetailPanel({
@@ -13,5 +15,15 @@ export default function LeadDetailPanel({
 }: LeadDetailPanelProps) {
   if (!selectedLead) return null;
 
-  return <SlideOverPanel onClose={onClose}>{selectedLead.name}</SlideOverPanel>;
+  return (
+    <SlideOverPanel onClose={onClose} className="w-md">
+      <div className="flex justify-between">
+        <h2 className="text-2xl font-bold mb-4">Lead Details</h2>
+
+        <XMarkIcon className="w-6 mb-auto cursor-pointer" onClick={onClose} />
+      </div>
+
+      <LeadDetailForm lead={selectedLead} onClose={onClose} />
+    </SlideOverPanel>
+  );
 }
