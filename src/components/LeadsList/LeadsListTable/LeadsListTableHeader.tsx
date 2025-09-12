@@ -1,4 +1,4 @@
-import TableHeadCell from "./TableHeadCell";
+import TableHeadCell from "../../ui/TableHeadCell";
 import ScoreHeaderCell from "./ScoreHeaderCell";
 
 export default function LeadsListTableHeader() {

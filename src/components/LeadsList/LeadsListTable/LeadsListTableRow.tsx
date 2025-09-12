@@ -1,6 +1,6 @@
 import type { Lead, LeadStatus } from "@/types/lead";
 
-import TableCell from "./TableCell";
+import TableCell from "../../ui/TableCell";
 import clsx from "clsx";
 import { CurrencyDollarIcon } from "@heroicons/react/24/outline";
 

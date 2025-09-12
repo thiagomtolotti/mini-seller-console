@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-import Backdrop from "../LeadDetailPanel/Backdrop";
+import Backdrop from "./Backdrop";
 
 interface ModalProps extends React.HTMLProps<HTMLDivElement> {
   onClose?: () => void;

@@ -1,6 +1,6 @@
 import { OpportunityStage } from "@/types/opportunity.d";
 
-import Button from "../LeadDetailPanel/Button";
+import Button from "../ui/Button";
 
 interface OpportunityFormProps {
   defaultName?: string;

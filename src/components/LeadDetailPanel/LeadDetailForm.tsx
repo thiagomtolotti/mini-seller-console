@@ -1,6 +1,6 @@
 import { LeadStatus, type Lead } from "@/types/lead.d";
 
-import Button from "./Button";
+import Button from "../ui/Button";
 import LabelLine from "./LabelLine";
 import useUpdateLead from "@/hooks/useUpdateLead";
 

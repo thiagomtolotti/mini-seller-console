@@ -1,6 +1,6 @@
 import type { Lead } from "@/types/lead.d";
 
-import SlideOverPanel from "./SlideOverPanel";
+import SlideOverPanel from "../ui/SlideOverPanel";
 import { XMarkIcon } from "@heroicons/react/16/solid";
 import LeadDetailForm from "./LeadDetailForm";
 

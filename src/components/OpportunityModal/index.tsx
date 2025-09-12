@@ -1,8 +1,8 @@
 import type { Lead } from "@/types/lead";
 
-import Modal from "./Modal";
+import Modal from "../ui/Modal";
 
-import ModalTitle from "./ModalTitle";
+import ModalTitle from "../ui/ModalTitle";
 import OpportunityForm from "./OpportunityForm";
 
 interface OpportunityModalProps {
