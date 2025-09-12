@@ -4,6 +4,7 @@ import Button from "../ui/Button";
 import Input from "../ui/Input";
 
 import { v4 as uuid } from "uuid";
+import useCreateOpportunity from "@/hooks/useCreateOpportunity";
 
 interface OpportunityFormProps {
   defaultName?: string;
@@ -16,6 +17,8 @@ export default function OpportunityForm({
   defaultAccount,
   onClose,
 }: OpportunityFormProps) {
+  const { createOpportunity } = useCreateOpportunity();
+
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
@@ -31,7 +34,7 @@ export default function OpportunityForm({
       stage: formData.get("stage") as OpportunityStage,
     };
 
-    console.log(opportunity);
+    createOpportunity(opportunity);
   }
 
   return (

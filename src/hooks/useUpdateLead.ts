@@ -1,6 +1,9 @@
 import { useContext, useState } from "react";
+
 import type { Lead } from "@/types/lead";
+
 import { LeadsListContext } from "@/contexts/LeadsListContext";
+
 const PENDING_TIME = 750;
 
 export default function useUpdateLead() {
