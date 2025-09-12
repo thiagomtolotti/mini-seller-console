@@ -1,11 +1,14 @@
 import clsx from "clsx";
-import { useState } from "react";
 
-export default function SelectViewTabs() {
-  const [currentView, setCurrentView] = useState<"leads" | "opportunities">(
-    "leads"
-  );
+interface SelectViewTabsProps {
+  currentView: "leads" | "opportunities";
+  setCurrentView: (view: "leads" | "opportunities") => void;
+}
 
+export default function SelectViewTabs({
+  currentView,
+  setCurrentView,
+}: SelectViewTabsProps) {
   return (
     <div className="flex gap-6">
       <TabButton
