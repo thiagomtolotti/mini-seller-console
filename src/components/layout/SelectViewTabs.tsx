@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { useState } from "react";
 
-export default function LeadsListTitle() {
+export default function SelectViewTabs() {
   const [currentView, setCurrentView] = useState<"leads" | "opportunities">(
     "leads"
   );
