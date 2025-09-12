@@ -9,17 +9,32 @@ export const PENDING_TIME = 750;
 export default function useFetchOpportunities() {
   const [opportunities, setOpportunities] = useState<Opportunity[]>();
   const [pending, setPending] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
+
+  async function fetchOpportunities() {
+    await new Promise((res) => setTimeout(res, PENDING_TIME));
+
+    return opportunitiesList as Opportunity[];
+  }
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setOpportunities(opportunitiesList as Opportunity[]);
-      setPending(false);
-    }, PENDING_TIME);
+    fetchOpportunities()
+      .then((data) => {
+        setOpportunities(data);
+      })
+      .catch((err) => {
+        setError(err);
+      })
+      .finally(() => {
+        setPending(false);
+      });
 
     return () => {
-      clearTimeout(timer);
+      setOpportunities(undefined);
+      setError(null);
+      setPending(true);
     };
   }, []);
 
-  return { opportunities, pending };
+  return { opportunities, pending, error };
 }

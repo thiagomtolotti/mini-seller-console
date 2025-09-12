@@ -1,6 +1,9 @@
-import type { Opportunity } from "@/types/opportunity";
-import { OpportunitiesContext } from "./OpportunitiesContext";
 import { useEffect, useState } from "react";
+
+import type { Opportunity } from "@/types/opportunity";
+
+import { OpportunitiesContext } from "./OpportunitiesContext";
+
 import useFetchOpportunities from "@/hooks/useFetchOpportunities";
 
 export const OpportunitiesProvider = ({
@@ -8,7 +11,7 @@ export const OpportunitiesProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const { opportunities, pending } = useFetchOpportunities();
+  const { opportunities, pending, error } = useFetchOpportunities();
   const [opportunitiesStore, setOpportunitiesStore] = useState<Opportunity[]>(
     []
   );
@@ -21,7 +24,7 @@ export const OpportunitiesProvider = ({
 
   return (
     <OpportunitiesContext.Provider
-      value={{ opportunitiesStore, setOpportunitiesStore, pending }}
+      value={{ opportunitiesStore, setOpportunitiesStore, pending, error }}
     >
       {children}
     </OpportunitiesContext.Provider>
