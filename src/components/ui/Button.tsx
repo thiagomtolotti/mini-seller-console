@@ -7,6 +7,7 @@ interface ButtonProps
     ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
   > {
+  pending?: boolean;
   variant?: ButtonVariants;
 }
 
@@ -15,6 +16,7 @@ type ButtonVariants = "primary" | "secondary";
 export default function Button({
   variant = "primary",
   className,
+  pending,
   ...props
 }: ButtonProps) {
   const variantClasses: Record<ButtonVariants, string> = {
@@ -24,8 +26,11 @@ export default function Button({
 
   return (
     <button
+      disabled={pending || props.disabled}
       className={clsx(
-        "cursor-pointer px-8 py-2 rounded-lg transition-all ease-in-out duration-300 font-semibold shadow-sm hover:shadow-md active:shadow-lg",
+        "cursor-pointer px-8 py-2 rounded-lg transition-all ease-in-out duration-300 font-semibold shadow-sm hover:shadow-md active:shadow-lg ",
+        "disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-gray-500",
+        pending && "!cursor-progress animate-pulse",
         variantClasses[variant],
         className
       )}
