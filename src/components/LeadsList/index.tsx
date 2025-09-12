@@ -1,7 +1,5 @@
 import { useState } from "react";
 
-import { LeadsListProvider } from "@/contexts/LeadsListProvider";
-
 import type { Lead } from "@/types/lead";
 
 import LeadsListTableFilters from "./LeadsListFilters";
@@ -17,7 +15,7 @@ export default function LeadsList() {
   );
 
   return (
-    <LeadsListProvider>
+    <>
       <LeadsListTableFilters />
 
       <LeadsListTable
@@ -34,6 +32,6 @@ export default function LeadsList() {
         onClose={() => setSelectedOpportunity(null)}
         selectedLead={selectedOpportunity}
       />
-    </LeadsListProvider>
+    </>
   );
 }
