@@ -11,18 +11,20 @@ interface LeadDetailFormProps {
 }
 
 export default function LeadDetailForm({ lead, onClose }: LeadDetailFormProps) {
-  const { updateLead } = useUpdateLead();
+  const { updateLead, pending } = useUpdateLead();
 
-  function handleSubmit(ev: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(ev: React.FormEvent<HTMLFormElement>) {
     ev.preventDefault();
 
     const formData = new FormData(ev.target as HTMLFormElement);
 
-    updateLead({
+    await updateLead({
       ...lead,
       email: formData.get("email") as string,
       status: formData.get("status") as LeadStatus,
     });
+
+    onClose();
   }
 
   return (
@@ -31,7 +33,7 @@ export default function LeadDetailForm({ lead, onClose }: LeadDetailFormProps) {
       onSubmit={handleSubmit}
       className="mt-8 flex flex-col gap-6"
     >
-      <LabelLine label="Name">{lead.email}</LabelLine>
+      <LabelLine label="Name">{lead.name}</LabelLine>
 
       <LabelLine label="Company">{lead.company}</LabelLine>
 
@@ -41,6 +43,7 @@ export default function LeadDetailForm({ lead, onClose }: LeadDetailFormProps) {
           name="email"
           defaultValue={lead.email}
           className="text-right"
+          disabled={pending}
         />
       </LabelLine>
 
@@ -52,6 +55,7 @@ export default function LeadDetailForm({ lead, onClose }: LeadDetailFormProps) {
         <select
           className="border-slate-300 border rounded-md py-1"
           name="status"
+          disabled={pending}
         >
           {Object.values(LeadStatus).map((value) => (
             <option key={value} value={value} selected={lead.status === value}>
@@ -65,7 +69,7 @@ export default function LeadDetailForm({ lead, onClose }: LeadDetailFormProps) {
         <Button variant="secondary" type="button" onClick={onClose}>
           Cancel
         </Button>
-        <Button>Save</Button>
+        <Button pending={pending}>Save</Button>
       </div>
     </form>
   );

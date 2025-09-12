@@ -8,9 +8,11 @@ const PENDING_TIME = 750;
 
 export default function useUpdateLead() {
   const { setLeadsStore } = useContext(LeadsListContext);
-  const [pending, setPending] = useState(true);
+  const [pending, setPending] = useState(false);
 
   async function updateLead(lead: Lead) {
+    setPending(true);
+
     await new Promise((res) => setTimeout(res, PENDING_TIME));
 
     setLeadsStore((cur) =>
