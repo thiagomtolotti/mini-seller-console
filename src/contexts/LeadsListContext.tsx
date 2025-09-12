@@ -10,6 +10,7 @@ interface ILeadsListContext {
   pendingLeads: boolean;
   leadsStore: Lead[];
   setLeadsStore: React.Dispatch<React.SetStateAction<Lead[]>>;
+  error: Error | null;
 }
 
 export const LeadsListContext = createContext({} as ILeadsListContext);

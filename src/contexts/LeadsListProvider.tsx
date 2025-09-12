@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 
 import { LeadsListContext } from "./LeadsListContext";
 
@@ -22,15 +22,17 @@ export const LeadsListProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const { leads, pending } = useLeadsList();
+  const { leads, pending, error } = useLeadsList();
 
   const [leadsStore, setLeadsStore] = useState<Lead[]>([]);
 
-  useEffect(() => {
-    setLeadsStore(leads ?? []);
-
-    return () => setLeadsStore([]);
-  }, [leads]);
+  useLayoutEffect(() => {
+    if (pending || error) {
+      setLeadsStore([]);
+    } else if (leads) {
+      setLeadsStore(leads);
+    }
+  }, [leads, pending, error]);
 
   const [filters, setFilters] = useState<Filters>({
     search: "",
@@ -51,6 +53,7 @@ export const LeadsListProvider = ({
         pendingLeads: pending,
         leadsStore,
         setLeadsStore,
+        error,
       }}
     >
       {children}
