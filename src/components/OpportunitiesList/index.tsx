@@ -1,3 +1,17 @@
+import TableHeader from "../ui/TableHeader";
+
 export default function OpportunitiesList() {
-  return <div>Opportunities List</div>;
+  return <OpportunitiesListTable />;
+}
+
+function OpportunitiesListTable() {
+  const columns = ["Name", "Account", "Amount", "Stage"];
+
+  return (
+    <table className="w-full">
+      <TableHeader columns={columns} />
+
+      <tbody></tbody>
+    </table>
+  );
 }

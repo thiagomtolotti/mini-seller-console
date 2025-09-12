@@ -5,8 +5,9 @@ import { LeadsListContext } from "@/contexts/LeadsListContext";
 import type { Lead } from "@/types/lead";
 
 import LeadsListTableRow from "./LeadsListTableRow";
-import LeadsListTableHeader from "./LeadsListTableHeader";
 import LeadsListTableSkeleton from "./LeadsListTableSkeleton";
+import TableHeader from "@/components/ui/TableHeader";
+import ScoreHeaderCell from "./ScoreHeaderCell";
 
 interface LeadsListTableProps {
   selectLead: (lead: Lead) => void;
@@ -19,9 +20,11 @@ export default function LeadsListTable({
 }: LeadsListTableProps) {
   const { leads, pendingLeads } = useContext(LeadsListContext);
 
+  const columns = ["Name", "Company", <ScoreHeaderCell />, "Status", "Actions"];
+
   return (
     <table className="w-full">
-      <LeadsListTableHeader />
+      <TableHeader columns={columns} />
 
       <tbody>
         {pendingLeads && <LeadsListTableSkeleton />}
