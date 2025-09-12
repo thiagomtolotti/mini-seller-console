@@ -1,5 +1,7 @@
 import { useContext, useState } from "react";
 
+import { ConfigurationsContext } from "@/contexts/ConfigurationsContext";
+
 import type { Lead } from "@/types/lead";
 
 import { LeadsListContext } from "@/contexts/LeadsListContext";
@@ -7,23 +9,31 @@ import { LeadsListContext } from "@/contexts/LeadsListContext";
 const PENDING_TIME = 750;
 
 export default function useUpdateLead() {
+  const { shouldThrow } = useContext(ConfigurationsContext);
+
   const { setLeadsStore } = useContext(LeadsListContext);
   const [pending, setPending] = useState(false);
 
   async function updateLead(lead: Lead) {
     setPending(true);
 
-    await new Promise((res) => setTimeout(res, PENDING_TIME));
+    try {
+      await new Promise((res) => setTimeout(res, PENDING_TIME));
 
-    setLeadsStore((cur) =>
-      cur.map((item) => {
-        if (item.id !== lead.id) return item;
+      if (shouldThrow) {
+        throw new Error("Failed to update lead");
+      }
 
-        return lead;
-      })
-    );
+      setLeadsStore((cur) =>
+        cur.map((item) => {
+          if (item.id !== lead.id) return item;
 
-    setPending(false);
+          return lead;
+        })
+      );
+    } finally {
+      setPending(false);
+    }
   }
 
   return {

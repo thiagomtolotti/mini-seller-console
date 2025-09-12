@@ -1,8 +1,5 @@
 @import "tailwindcss";
 
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: theme(--color-slate-900);
-    color: theme(--color-slate-200);
-  }
+body {
+  background-color: theme(--color-slate-900);
 }
