@@ -1,9 +1,13 @@
+import { useState } from "react";
+
+import clsx from "clsx";
+import { v4 as uuid } from "uuid";
+
 import { OpportunityStage, type Opportunity } from "@/types/opportunity.d";
 
 import Button from "../ui/Button";
 import Input from "../ui/Input";
 
-import { v4 as uuid } from "uuid";
 import useCreateOpportunity from "@/hooks/useCreateOpportunity";
 
 interface OpportunityFormProps {
@@ -17,6 +21,7 @@ export default function OpportunityForm({
   defaultAccount,
   onClose,
 }: OpportunityFormProps) {
+  const [error, setError] = useState<Error | null>(null);
   const { createOpportunity, pending } = useCreateOpportunity();
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -34,9 +39,15 @@ export default function OpportunityForm({
       stage: formData.get("stage") as OpportunityStage,
     };
 
-    await createOpportunity(opportunity);
+    try {
+      await createOpportunity(opportunity);
 
-    onClose();
+      onClose();
+    } catch (err) {
+      setError(
+        err instanceof Error ? err : new Error("An unexpected error occurred")
+      );
+    }
   }
 
   return (
@@ -72,8 +83,12 @@ export default function OpportunityForm({
           disabled={pending}
         />
 
-        <SelectStage />
+        <SelectStage disabled={pending} />
       </div>
+
+      {error && (
+        <p className="text-red-500 text-sm ml-auto">Error: {error.message}</p>
+      )}
 
       <div className="mt-6 ml-auto flex gap-4">
         <Button variant="secondary" type="button" onClick={onClose}>
@@ -88,12 +103,19 @@ export default function OpportunityForm({
   );
 }
 
-function SelectStage() {
+function SelectStage({
+  className,
+  ...props
+}: React.HTMLProps<HTMLSelectElement>) {
   return (
     <select
       name="stage"
-      className="border border-slate-300 rounded-md px-3 py-2 w-full"
+      className={clsx(
+        "border border-slate-300 rounded-md px-3 py-2 w-full",
+        className
+      )}
       required
+      {...props}
     >
       {Object.entries(OpportunityStage).map(([label, value]) => (
         <option key={value} value={value}>
