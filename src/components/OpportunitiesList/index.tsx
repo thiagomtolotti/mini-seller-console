@@ -1,3 +1,5 @@
+import { OpportunitiesProvider } from "@/contexts/OpportunitiesProvider";
+
 import TableHeader from "../ui/TableHeader";
 
 export default function OpportunitiesList() {
@@ -8,10 +10,12 @@ function OpportunitiesListTable() {
   const columns = ["Name", "Account", "Amount", "Stage"];
 
   return (
-    <table className="w-full">
-      <TableHeader columns={columns} />
+    <OpportunitiesProvider>
+      <table className="w-full">
+        <TableHeader columns={columns} />
 
-      <tbody></tbody>
-    </table>
+        <tbody></tbody>
+      </table>
+    </OpportunitiesProvider>
   );
 }
