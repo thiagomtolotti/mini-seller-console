@@ -1,7 +1,9 @@
-import { OpportunityStage } from "@/types/opportunity.d";
+import { OpportunityStage, type Opportunity } from "@/types/opportunity.d";
 
 import Button from "../ui/Button";
 import Input from "../ui/Input";
+
+import { v4 as uuid } from "uuid";
 
 interface OpportunityFormProps {
   defaultName?: string;
@@ -14,8 +16,29 @@ export default function OpportunityForm({
   defaultAccount,
   onClose,
 }: OpportunityFormProps) {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+
+    const opportunity: Opportunity = {
+      id: uuid(),
+      name: formData.get("name") as string,
+      accountName: formData.get("accountName") as string,
+      amount: formData.get("amount")
+        ? Number(formData.get("amount"))
+        : undefined,
+      stage: formData.get("stage") as OpportunityStage,
+    };
+
+    console.log(opportunity);
+  }
+
   return (
-    <form action="" className="flex flex-col gap-4 flex-wrap mt-12">
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col gap-4 flex-wrap mt-12"
+    >
       <div className="flex gap-4">
         <Input
           type="text"
@@ -25,10 +48,6 @@ export default function OpportunityForm({
           defaultValue={defaultName}
         />
 
-        <Input type="number" name="amount" placeholder="Amount" />
-      </div>
-
-      <div className="flex gap-4">
         <Input
           type="text"
           name="accountName"
@@ -36,6 +55,10 @@ export default function OpportunityForm({
           defaultValue={defaultAccount}
           required
         />
+      </div>
+
+      <div className="flex gap-4">
+        <Input type="number" name="amount" placeholder="Amount" />
 
         <SelectStage />
       </div>
