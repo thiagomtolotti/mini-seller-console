@@ -5,10 +5,11 @@ import { LeadsListContext } from "@/contexts/LeadsListContext";
 import type { Lead } from "@/types/lead";
 
 import LeadsListTableRow from "./LeadsListTableRow";
-import TableHeader from "@/components/ui/TableHeader";
 import ScoreHeaderCell from "./ScoreHeaderCell";
 
-import TableSkeleton from "../../ui/TableSkeleton";
+import TableHeader from "@/components/ui/TableHeader";
+import TableSkeleton from "@/components/ui/TableSkeleton";
+import TableEmpty from "@/components/ui/TableEmpty";
 
 interface LeadsListTableProps {
   selectLead: (lead: Lead) => void;
@@ -28,6 +29,10 @@ export default function LeadsListTable({
       <TableHeader columns={columns} />
 
       <tbody>
+        {leads?.length === 0 && !pendingLeads && (
+          <TableEmpty columns={columns.length} resourceName="leads" />
+        )}
+
         {pendingLeads && <TableSkeleton columns={columns.length} rows={50} />}
 
         {leads?.map((lead) => (
