@@ -32,7 +32,7 @@ export default function FilterButton({
       >
         <FunnelIcon className="w-4 text-slate-400" />
 
-        <p>Filter</p>
+        <p>Filter {statusFilter.length > 0 && `(${statusFilter.length})`}</p>
       </button>
 
       {isOpen && (

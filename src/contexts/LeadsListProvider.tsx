@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 
 import { LeadsListContext } from "./LeadsListContext";
 
@@ -34,15 +34,7 @@ export const LeadsListProvider = ({
     }
   }, [leads, pending, error]);
 
-  const [filters, setFilters] = useState<Filters>({
-    search: "",
-    status: [],
-    score: Order.None,
-  });
-
-  const searchFiltered = useLeadsSearchFilter(leadsStore, filters.search);
-  const statusFiltered = useLeadsStatusFilter(searchFiltered, filters.status);
-  const scoreOrdered = useOrderLeadsByScore(statusFiltered, filters.score);
+  const { scoreOrdered, filters, setFilters } = useFilters(leadsStore);
 
   return (
     <LeadsListContext.Provider
@@ -60,3 +52,29 @@ export const LeadsListProvider = ({
     </LeadsListContext.Provider>
   );
 };
+
+function useFilters(leads: Lead[]) {
+  const [filters, setFilters] = useState<Filters>(() => {
+    const filtersInStorage = localStorage.getItem("filters");
+
+    if (filtersInStorage) {
+      return JSON.parse(filtersInStorage) as Filters;
+    }
+
+    return { search: "", status: [], score: Order.None };
+  });
+
+  const searchFiltered = useLeadsSearchFilter(leads, filters.search);
+  const statusFiltered = useLeadsStatusFilter(searchFiltered, filters.status);
+  const scoreOrdered = useOrderLeadsByScore(statusFiltered, filters.score);
+
+  useEffect(() => {
+    localStorage.setItem("filters", JSON.stringify(filters));
+
+    return () => {
+      localStorage.removeItem("filters");
+    };
+  }, [filters]);
+
+  return { scoreOrdered, filters, setFilters };
+}

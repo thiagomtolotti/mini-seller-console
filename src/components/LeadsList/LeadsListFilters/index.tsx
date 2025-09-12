@@ -8,7 +8,7 @@ export default function LeadsListTableFilters() {
 
   return (
     <div className="p-4 mb-4 flex gap-4 justify-end">
-      <SearchButton setFilters={setFilters} />
+      <SearchButton setFilters={setFilters} search={filters.search} />
 
       <FilterButton statusFilter={filters.status} setFilters={setFilters} />
     </div>
