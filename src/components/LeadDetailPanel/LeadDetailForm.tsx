@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { LeadStatus, type Lead } from "@/types/lead.d";
 
 import Button from "../ui/Button";
@@ -11,6 +13,7 @@ interface LeadDetailFormProps {
 }
 
 export default function LeadDetailForm({ lead, onClose }: LeadDetailFormProps) {
+  const [error, setError] = useState<Error | null>(null);
   const { updateLead, pending } = useUpdateLead();
 
   async function handleSubmit(ev: React.FormEvent<HTMLFormElement>) {
@@ -18,13 +21,17 @@ export default function LeadDetailForm({ lead, onClose }: LeadDetailFormProps) {
 
     const formData = new FormData(ev.target as HTMLFormElement);
 
-    await updateLead({
-      ...lead,
-      email: formData.get("email") as string,
-      status: formData.get("status") as LeadStatus,
-    });
+    try {
+      await updateLead({
+        ...lead,
+        email: formData.get("email") as string,
+        status: formData.get("status") as LeadStatus,
+      });
 
-    onClose();
+      onClose();
+    } catch (err) {
+      setError(err instanceof Error ? err : new Error("Unknown error"));
+    }
   }
 
   return (
@@ -65,6 +72,12 @@ export default function LeadDetailForm({ lead, onClose }: LeadDetailFormProps) {
           ))}
         </select>
       </LabelLine>
+
+      {error && (
+        <div className="ml-auto text-red-600 text-sm ">
+          Error: {error.message}
+        </div>
+      )}
 
       <div className="flex gap-4 ml-auto mt-6">
         <Button variant="secondary" type="button" onClick={onClose}>
