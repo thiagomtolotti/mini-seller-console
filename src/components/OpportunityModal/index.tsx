@@ -2,6 +2,9 @@ import type { Lead } from "@/types/lead";
 
 import Modal from "./Modal";
 
+import ModalTitle from "./ModalTitle";
+import OpportunityForm from "./OpportunityForm";
+
 interface OpportunityModalProps {
   selectedLead: Lead | null;
   onClose: () => void;
@@ -15,7 +18,13 @@ export default function OpportunityModal({
 
   return (
     <Modal className="w-md" onClose={onClose}>
-      Create Opportunity
+      <ModalTitle />
+
+      <OpportunityForm
+        defaultName={selectedLead.name}
+        defaultAccount={selectedLead.company}
+        onClose={onClose}
+      />
     </Modal>
   );
 }
