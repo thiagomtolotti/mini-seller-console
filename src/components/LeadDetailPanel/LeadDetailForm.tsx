@@ -3,6 +3,7 @@ import { LeadStatus, type Lead } from "@/types/lead.d";
 import Button from "../ui/Button";
 import LabelLine from "./LabelLine";
 import useUpdateLead from "@/hooks/useUpdateLead";
+import Input from "../ui/Input";
 
 interface LeadDetailFormProps {
   lead: Lead;
@@ -35,11 +36,11 @@ export default function LeadDetailForm({ lead, onClose }: LeadDetailFormProps) {
       <LabelLine label="Company">{lead.company}</LabelLine>
 
       <LabelLine label="Email">
-        <input
+        <Input
           type="email"
           name="email"
           defaultValue={lead.email}
-          className="border border-slate-300 rounded-md px-2 py-1 text-right"
+          className="text-right"
         />
       </LabelLine>
 

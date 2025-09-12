@@ -17,7 +17,7 @@ export default function OpportunityModal({
   if (!selectedLead) return null;
 
   return (
-    <Modal className="w-md" onClose={onClose}>
+    <Modal className="min-w-md" onClose={onClose}>
       <ModalTitle />
 
       <OpportunityForm
