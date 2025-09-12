@@ -8,7 +8,7 @@ export const OpportunitiesProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const { opportunities } = useFetchOpportunities();
+  const { opportunities, pending } = useFetchOpportunities();
   const [opportunitiesStore, setOpportunitiesStore] = useState<Opportunity[]>(
     []
   );
@@ -21,7 +21,7 @@ export const OpportunitiesProvider = ({
 
   return (
     <OpportunitiesContext.Provider
-      value={{ opportunitiesStore, setOpportunitiesStore }}
+      value={{ opportunitiesStore, setOpportunitiesStore, pending }}
     >
       {children}
     </OpportunitiesContext.Provider>
