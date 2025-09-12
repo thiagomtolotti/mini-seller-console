@@ -9,7 +9,7 @@ import useCreateOpportunity from "@/hooks/useCreateOpportunity";
 interface OpportunityFormProps {
   defaultName?: string;
   defaultAccount?: string;
-  onClose?: () => void;
+  onClose: () => void;
 }
 
 export default function OpportunityForm({
@@ -17,9 +17,9 @@ export default function OpportunityForm({
   defaultAccount,
   onClose,
 }: OpportunityFormProps) {
-  const { createOpportunity } = useCreateOpportunity();
+  const { createOpportunity, pending } = useCreateOpportunity();
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
@@ -34,7 +34,9 @@ export default function OpportunityForm({
       stage: formData.get("stage") as OpportunityStage,
     };
 
-    createOpportunity(opportunity);
+    await createOpportunity(opportunity);
+
+    onClose();
   }
 
   return (
@@ -47,8 +49,9 @@ export default function OpportunityForm({
           type="text"
           name="name"
           placeholder="Opportunity Name"
-          required
           defaultValue={defaultName}
+          required
+          disabled={pending}
         />
 
         <Input
@@ -57,11 +60,17 @@ export default function OpportunityForm({
           placeholder="Account Name"
           defaultValue={defaultAccount}
           required
+          disabled={pending}
         />
       </div>
 
       <div className="flex gap-4">
-        <Input type="number" name="amount" placeholder="Amount" />
+        <Input
+          type="number"
+          name="amount"
+          placeholder="Amount"
+          disabled={pending}
+        />
 
         <SelectStage />
       </div>
@@ -71,7 +80,9 @@ export default function OpportunityForm({
           Cancel
         </Button>
 
-        <Button type="submit">Create Opportunity</Button>
+        <Button type="submit" pending={pending}>
+          Create Opportunity
+        </Button>
       </div>
     </form>
   );
@@ -81,8 +92,8 @@ function SelectStage() {
   return (
     <select
       name="stage"
-      required
       className="border border-slate-300 rounded-md px-3 py-2 w-full"
+      required
     >
       {Object.entries(OpportunityStage).map(([label, value]) => (
         <option key={value} value={value}>

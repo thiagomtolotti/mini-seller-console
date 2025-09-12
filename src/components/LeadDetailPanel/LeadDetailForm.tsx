@@ -56,9 +56,10 @@ export default function LeadDetailForm({ lead, onClose }: LeadDetailFormProps) {
           className="border-slate-300 border rounded-md py-1"
           name="status"
           disabled={pending}
+          defaultValue={lead.status}
         >
           {Object.values(LeadStatus).map((value) => (
-            <option key={value} value={value} selected={lead.status === value}>
+            <option key={value} value={value}>
               {value}
             </option>
           ))}
