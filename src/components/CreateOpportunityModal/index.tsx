@@ -5,15 +5,15 @@ import Modal from "../ui/Modal";
 import ModalTitle from "../ui/ModalTitle";
 import OpportunityForm from "./OpportunityForm";
 
-interface OpportunityModalProps {
+interface CreateOpportunityModalProps {
   selectedLead: Lead | null;
   onClose: () => void;
 }
 
-export default function OpportunityModal({
+export default function CreateOpportunityModal({
   selectedLead,
   onClose,
-}: OpportunityModalProps) {
+}: CreateOpportunityModalProps) {
   if (!selectedLead) return null;
 
   return (

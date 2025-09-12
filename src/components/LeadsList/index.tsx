@@ -8,7 +8,7 @@ import LeadsListTableFilters from "./LeadsListFilters";
 import LeadsListTable from "./LeadsListTable";
 import LeadDetailPanel from "../LeadDetailPanel";
 
-import OpportunityModal from "../OpportunityModal";
+import CreateOpportunityModal from "../CreateOpportunityModal";
 
 export default function LeadsList() {
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
@@ -30,7 +30,7 @@ export default function LeadsList() {
         onClose={() => setSelectedLead(null)}
       />
 
-      <OpportunityModal
+      <CreateOpportunityModal
         onClose={() => setSelectedOpportunity(null)}
         selectedLead={selectedOpportunity}
       />
