@@ -25,20 +25,14 @@ jobs:
         run: npm run build
 
       - name: Deploy to S3
-        uses: aws-actions/s3-sync@v2
+        uses: reggionick/s3-deploy@v4
         with:
-          bucket: mini-seler-console
-          region: ${{ secrets.AWS_REGION }}
-          source-dir: ./dist
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
-      - name: Invalidate Cloudfront cache
-        uses: chetan/invalidate-cloudfront-action@v2
-        with:
-          distribution-id: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
-          paths: /*
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          folder: build
+          bucket: mini-seller-console
+          bucket-region: ${{ secrets.S3_BUCKET_REGION }}
+          dist-id: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+          invalidation: /
+          delete-removed: true
+          no-cache: true
+          private: true
+          files-to-include: "{.*/**,**}"
