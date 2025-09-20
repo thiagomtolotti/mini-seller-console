@@ -18,7 +18,7 @@ export default function SlideOverPanel({
     >
       <aside
         className={clsx(
-          "bg-white ml-auto h-full cursor-default p-8 text-slate-900 rounded-l-2xl drop-shadow-2xl",
+          "bg-white ml-auto h-full cursor-default p-8  rounded-l-2xl drop-shadow-2xl",
           className
         )}
         {...props}

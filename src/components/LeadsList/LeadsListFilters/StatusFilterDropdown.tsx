@@ -21,7 +21,7 @@ export default function StatusFilterDropdown({
   }
 
   return (
-    <div className="absolute mt-4 bg-slate-50 right-0 p-4 rounded-xl shadow-sm">
+    <div className="absolute mt-4 bg-slate-900 border border-slate-800 right-0 p-4 rounded-xl shadow-sm">
       <p className="font-semibold mb-4">Status</p>
 
       <div className="flex flex-col gap-2">

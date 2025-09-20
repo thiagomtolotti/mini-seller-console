@@ -15,7 +15,7 @@ export default function Modal({ onClose, className, ...props }: ModalProps) {
     >
       <div
         className={clsx(
-          "bg-white m-auto min-h-0-20 cursor-default p-8 text-slate-900 rounded-xl drop-shadow-2xl",
+          "bg-white m-auto min-h-0-20 cursor-default p-8  rounded-xl drop-shadow-2xl",
           className
         )}
         {...props}
