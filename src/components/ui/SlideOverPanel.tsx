@@ -27,7 +27,7 @@ export default function SlideOverPanel({
     >
       <aside
         className={clsx(
-          "bg-black/50 text-slate-50 border border-slate-800 ml-auto h-full cursor-default p-10 rounded-l-2xl drop-shadow-2xl",
+          "bg-black/90 text-slate-50 border border-slate-800 ml-auto h-full cursor-default p-10 rounded-l-2xl drop-shadow-2xl",
           "transition-transform duration-300 ease-in-out",
           !isOpen && "translate-x-full",
           className
