@@ -21,7 +21,7 @@ export default function Button({
 }: ButtonProps) {
   const variantClasses: Record<ButtonVariants, string> = {
     primary: "bg-violet-600 text-white hover:bg-violet-700",
-    secondary: "text-violet-600 hover:bg-violet-50",
+    secondary: "text-violet-600 hover:bg-violet-500/20",
   };
 
   return (
