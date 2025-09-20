@@ -38,7 +38,7 @@ function TabButton({ label, isActive, onClick }: TabButtonProps) {
         "text-2xl font-bold mb-6 cursor-pointer transition-all px-4 pb-2 border-b-2",
         isActive
           ? " border-slate-50"
-          : " text-gray-600 hover: border-transparent"
+          : " text-gray-600 hover:text-gray-400 border-transparent"
       )}
       onClick={onClick}
     >
