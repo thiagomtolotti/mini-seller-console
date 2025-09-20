@@ -10,7 +10,7 @@ export default function SelectViewTabs({
   setCurrentView,
 }: SelectViewTabsProps) {
   return (
-    <div className="flex gap-6">
+    <div className="flex gap-6 justify-center md:justify-start">
       <TabButton
         label="Leads"
         isActive={currentView === "leads"}
