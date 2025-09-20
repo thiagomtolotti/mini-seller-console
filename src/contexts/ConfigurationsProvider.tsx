@@ -38,7 +38,7 @@ function ConfigurationSettings({
   setShouldThrow,
 }: ConfigurationSettingsProps) {
   return (
-    <div className="flex flex-col gap-4 fixed bottom-4 right-4 bg-white p-4 rounded shadow">
+    <div className="flex flex-col gap-4 fixed bottom-4 right-4 bg-black/50 border border-slate-800 text-white p-4 rounded-lg shadow">
       <h3 className="font-semibold">Settings</h3>
 
       <label className="inline-flex items-center space-x-2 select-none">

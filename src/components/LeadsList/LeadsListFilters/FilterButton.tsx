@@ -28,7 +28,7 @@ export default function FilterButton({
     <div className="relative" ref={containerRef}>
       <button
         onClick={() => setIsOpen(true)}
-        className="rounded-xl shadow-sm w-fit flex gap-2 px-4 py-3 hover:bg-slate-200 cursor-pointer font-semibold"
+        className="rounded-xl shadow-sm w-fit flex gap-2 px-4 py-3 hover:bg-white/20 cursor-pointer font-semibold"
       >
         <FunnelIcon className="w-4 text-slate-400" />
 

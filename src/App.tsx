@@ -16,7 +16,10 @@ function App() {
 
   return (
     <Providers>
-      <div className="mx-auto w-full max-w-4xl bg-slate-50 p-10 m-12 rounded-xl drop-shadow-lg text-slate-800">
+      <div className="fixed top-0 left-0 w-dvw h-dvh bg-blue-950" />
+      <div className="fixed top-0 left-0 w-dvw h-dvh bg-linear-to-t to-70% from-black/30 to-black/80" />
+
+      <div className="mx-auto w-full max-w-4xl bg-black/40 border border-slate-800 p-10 m-12 rounded-xl drop-shadow-lg text-slate-50">
         <SelectViewTabs
           currentView={currentView}
           setCurrentView={setCurrentView}

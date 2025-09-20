@@ -19,7 +19,7 @@ export default function LeadsListTableRow({
   return (
     <tr
       className={clsx(
-        "border-b-gray-100 border-b-2 text-slate-800 last-of-type:border-b-0 hover:bg-slate-200 transition-all ease-in-out cursor-pointer",
+        "border-b-white/10 border-b last-of-type:border-b-0 hover:bg-white/10 transition-all ease-in-out cursor-pointer",
         className
       )}
       {...props}
@@ -40,7 +40,7 @@ export default function LeadsListTableRow({
       >
         <CurrencyDollarIcon
           onClick={onOpportunityClick}
-          className="ml-auto w-10 p-2 hover:bg-slate-300 rounded-full transition-all cursor-pointer"
+          className="ml-auto w-10 p-2 hover:bg-white/20 rounded-full transition-all cursor-pointer"
         />
       </TableCell>
     </tr>
@@ -48,10 +48,20 @@ export default function LeadsListTableRow({
 }
 
 function LeadStatusBadge({ status }: { status: LeadStatus }) {
+  const statusColors: Record<
+    LeadStatus,
+    React.HTMLProps<unknown>["className"]
+  > = {
+    New: "bg-violet-600",
+    Contacted: "bg-violet-800",
+    Qualified: "bg-violet-950",
+  };
+
   return (
     <span
       className={clsx(
-        "block w-fit py-1 px-4 text-center rounded-full font-semibold text-slate-50 text-sm shadow-md bg-violet-600"
+        "block w-fit py-1 px-4 text-center rounded-full font-semibold text-slate-50 text-sm shadow-md",
+        statusColors[status]
       )}
     >
       {status}

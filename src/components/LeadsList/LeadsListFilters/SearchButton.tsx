@@ -13,11 +13,11 @@ export default function SearchButton({
 }: SearchButtonProps) {
   return (
     <div className="rounded-xl shadow-sm w-fit flex gap-2 px-4 py-3 ">
-      <MagnifyingGlassIcon className="w-6 text-slate-400" />
+      <MagnifyingGlassIcon className="w-6 text-slate-50" />
 
       <input
         placeholder="Search by name or company"
-        className="w-68 focus:outline-none "
+        className="w-68 focus:outline-none placeholder:text-slate-400"
         onChange={debounce((ev) => {
           setFilters((filters) => ({ ...filters, search: ev.target.value }));
         }, 300)}

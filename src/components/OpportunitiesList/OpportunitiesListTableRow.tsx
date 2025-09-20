@@ -17,7 +17,7 @@ export default function OpportunitiesListTableRow({
   return (
     <tr
       className={clsx(
-        "border-b-gray-100 border-b-2 text-slate-800 last-of-type:border-b-0 hover:bg-slate-200 transition-all ease-in-out",
+        "border-b-white/10 border-b last-of-type:border-b-0 hover:bg-white/10 transition-all ease-in-out",
         className
       )}
       {...props}
