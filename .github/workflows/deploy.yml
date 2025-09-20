@@ -27,7 +27,7 @@ jobs:
       - name: Deploy to S3
         uses: reggionick/s3-deploy@v4
         with:
-          folder: build
+          folder: dist
           bucket: mini-seller-console
           bucket-region: ${{ secrets.S3_BUCKET_REGION }}
           dist-id: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
