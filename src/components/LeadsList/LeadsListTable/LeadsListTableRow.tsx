@@ -1,7 +1,10 @@
-import type { Lead, LeadStatus } from "@/types/lead";
+import type { Lead } from "@/types/lead";
 
 import TableCell from "../../ui/TableCell";
 import clsx from "clsx";
+
+import LeadStatusBadge from "../LeadStatusBadge";
+
 import { CurrencyDollarIcon } from "@heroicons/react/24/outline";
 
 interface LeadsListTableRowProps
@@ -44,27 +47,5 @@ export default function LeadsListTableRow({
         />
       </TableCell>
     </tr>
-  );
-}
-
-function LeadStatusBadge({ status }: { status: LeadStatus }) {
-  const statusColors: Record<
-    LeadStatus,
-    React.HTMLProps<unknown>["className"]
-  > = {
-    New: "bg-violet-600",
-    Contacted: "bg-violet-800",
-    Qualified: "bg-violet-950",
-  };
-
-  return (
-    <span
-      className={clsx(
-        "block w-fit py-1 px-4 text-center rounded-full font-semibold text-slate-50 text-sm shadow-md",
-        statusColors[status]
-      )}
-    >
-      {status}
-    </span>
   );
 }

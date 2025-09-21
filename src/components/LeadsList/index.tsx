@@ -7,6 +7,7 @@ import LeadsListTable from "./LeadsListTable";
 import LeadDetailPanel from "../LeadDetailPanel";
 
 import CreateOpportunityModal from "../CreateOpportunityModal";
+import LeadsListCards from "./LeadsListCards";
 
 export default function LeadsList() {
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
@@ -19,6 +20,11 @@ export default function LeadsList() {
       <LeadsListTableFilters />
 
       <LeadsListTable
+        selectLead={setSelectedLead}
+        selectOpportunity={setSelectedOpportunity}
+      />
+
+      <LeadsListCards
         selectLead={setSelectedLead}
         selectOpportunity={setSelectedOpportunity}
       />
