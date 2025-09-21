@@ -15,7 +15,7 @@ export default function LeadsListCard({
   selectOpportunity,
 }: LeadsListCardProps) {
   return (
-    <div className="border border-slate-800 bg-black/20 px-6 py-8 rounded-lg mb-4 flex flex-col gap-2">
+    <div className="border border-slate-800 bg-black/20 px-6 py-8 rounded-lg flex flex-col gap-2">
       <div className="flex justify-between items-center">
         <h3 className="font-bold text-lg mb-2">{lead.name}</h3>
 

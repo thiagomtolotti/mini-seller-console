@@ -4,6 +4,7 @@ import type { Lead } from "@/types/lead";
 
 import { LeadsListContext } from "@/contexts/LeadsListContext";
 
+import LeadsListCardsSkeleton from "./LeadsListCardsSkeleton";
 import LeadsListCard from "./LeadsListCard";
 
 interface LeadsListCardsProps {
@@ -15,10 +16,12 @@ export default function LeadsListCards({
   selectLead,
   selectOpportunity,
 }: LeadsListCardsProps) {
-  const { leads } = useContext(LeadsListContext);
+  const { leads, pendingLeads } = useContext(LeadsListContext);
 
   return (
-    <div className="md:hidden my-12 grid sm:grid-cols-2 gap-4">
+    <div className="md:hidden my-12 grid sm:grid-cols-2 gap-8">
+      {pendingLeads && <LeadsListCardsSkeleton />}
+
       {leads?.map((lead) => (
         <LeadsListCard
           key={lead.id}
