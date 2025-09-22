@@ -49,7 +49,7 @@ export default function LeadDetailForm({ lead, onClose }: LeadDetailFormProps) {
           type="email"
           name="email"
           defaultValue={lead.email}
-          className="text-right"
+          className="md:text-right"
           disabled={pending}
         />
       </LabelLine>
@@ -79,11 +79,19 @@ export default function LeadDetailForm({ lead, onClose }: LeadDetailFormProps) {
         </div>
       )}
 
-      <div className="flex gap-4 ml-auto mt-6">
-        <Button variant="secondary" type="button" onClick={onClose}>
+      <div className="flex gap-4 ml-auto mt-6 flex-wrap">
+        <Button
+          variant="secondary"
+          type="button"
+          onClick={onClose}
+          className="grow"
+        >
           Cancel
         </Button>
-        <Button pending={pending}>Save</Button>
+
+        <Button pending={pending} className="grow min-w-40">
+          Save
+        </Button>
       </div>
     </form>
   );
