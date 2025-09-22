@@ -16,6 +16,27 @@ The live version is avaliable at [mini-seller-console.thiagotolotti.com](https:/
 - TypeScript
 - Tailwind CSS
 
+## Features
+
+- List of leads
+  - Load leads from a local JSON file
+  - Loading state (UI)
+  - Empty state (UI)
+  - Error state (UI)
+  - Filter leads by search (name, company) and status
+  - Sort leads by score
+  - Edit lead details (in memory)
+  - Convert leads to opportunities (in memory)
+  - Persists filters and sorting in local storage
+- List of opportunities
+  - Load opportunities from a local JSON file
+  - Loading state (UI)
+  - Empty state (UI)
+  - Error state (UI)
+- Responsive UI
+- Continuous deployment (CD) to Amazon S3
+- Global setting for simulating errors in \'requests\'
+
 ## Running the Project
 
 1. Install dependencies:
