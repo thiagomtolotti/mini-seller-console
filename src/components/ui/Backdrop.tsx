@@ -1,11 +1,14 @@
 import ReactDOM from "react-dom";
 import clsx from "clsx";
+import useLockBodyOverflow from "@/hooks/useLockBodyOverflow";
 
 export default function Backdrop({
   className,
   children,
   ...props
 }: React.HTMLProps<HTMLDivElement>) {
+  useLockBodyOverflow();
+
   return ReactDOM.createPortal(
     <div
       className={clsx(
