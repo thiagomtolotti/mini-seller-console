@@ -12,12 +12,12 @@ export default function SearchButton({
   setFilters,
 }: SearchButtonProps) {
   return (
-    <div className="rounded-xl shadow-sm w-fit flex gap-2 px-4 py-3 ">
+    <div className="rounded-xl shadow-sm xs:max-w-68 flex-grow flex gap-2 px-4 py-3 ">
       <MagnifyingGlassIcon className="w-6 text-slate-50" />
 
       <input
         placeholder="Search by name or company"
-        className="w-68 focus:outline-none placeholder:text-slate-400"
+        className="w-full truncate focus:outline-none placeholder:text-slate-400"
         onChange={debounce((ev) => {
           setFilters((filters) => ({ ...filters, search: ev.target.value }));
         }, 300)}
