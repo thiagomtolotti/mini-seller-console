@@ -55,7 +55,7 @@ export default function OpportunityForm({
       onSubmit={handleSubmit}
       className="flex flex-col gap-4 flex-wrap mt-12"
     >
-      <div className="flex gap-4">
+      <div className="flex flex-wrap gap-4">
         <Input
           type="text"
           name="name"
@@ -63,6 +63,7 @@ export default function OpportunityForm({
           defaultValue={defaultName}
           required
           disabled={pending}
+          className="flex-grow min-w-40"
         />
 
         <Input
@@ -72,30 +73,37 @@ export default function OpportunityForm({
           defaultValue={defaultAccount}
           required
           disabled={pending}
+          className="flex-grow min-w-40"
         />
       </div>
 
-      <div className="flex gap-4">
+      <div className="flex flex-wrap gap-4">
         <Input
           type="number"
           name="amount"
           placeholder="Amount"
           disabled={pending}
+          className="flex-grow min-w-40"
         />
 
-        <SelectStage disabled={pending} />
+        <SelectStage disabled={pending} className="flex-grow min-w-40" />
       </div>
 
       {error && (
         <p className="text-red-500 text-sm ml-auto">Error: {error.message}</p>
       )}
 
-      <div className="mt-6 ml-auto flex gap-4">
-        <Button variant="secondary" type="button" onClick={onClose}>
+      <div className="mt-6 ml-auto flex-wrap flex gap-4">
+        <Button
+          variant="secondary"
+          type="button"
+          onClick={onClose}
+          className="grow"
+        >
           Cancel
         </Button>
 
-        <Button type="submit" pending={pending}>
+        <Button type="submit" pending={pending} className="grow">
           Create Opportunity
         </Button>
       </div>
@@ -111,7 +119,7 @@ function SelectStage({
     <select
       name="stage"
       className={clsx(
-        "border border-slate-300 rounded-md px-3 py-2 w-full",
+        "border border-slate-300 rounded-md px-3 py-2",
         className
       )}
       required

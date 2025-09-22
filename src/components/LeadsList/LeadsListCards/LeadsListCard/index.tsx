@@ -34,7 +34,7 @@ export default function LeadsListCard({
         <span className="font-semibold">Score:</span> {lead.score}
       </p>
 
-      <div className="mt-4 ml-auto flex flex-wrap gap-4 justify-center">
+      <div className="md:mt-4 ml-auto flex flex-wrap gap-4 justify-center mt-auto max-md:pt-4">
         <Button variant="secondary" className="grow" onClick={selectLead}>
           Edit lead
         </Button>
