@@ -4,7 +4,9 @@ import { defineConfig } from "vitest/config";
 export default defineConfig({
   plugins: [tsconfigPaths()],
   test: {
+    globals: true,
     coverage: { provider: "istanbul" },
     environment: "jsdom",
+    setupFiles: "./tests/setup.ts",
   },
 });
