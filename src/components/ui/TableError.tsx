@@ -1,3 +1,5 @@
+import ErrorState from "./ErrorState";
+
 interface TableErrorProps {
   columns: number;
   resourceName: string;
@@ -6,8 +8,8 @@ interface TableErrorProps {
 export default function TableError({ columns, resourceName }: TableErrorProps) {
   return (
     <tr>
-      <td colSpan={columns} className="text-center py-8 text-red-500">
-        There was an error loading {resourceName.toLowerCase()}.
+      <td colSpan={columns} className="py-8">
+        <ErrorState resourceName={resourceName} />
       </td>
     </tr>
   );
