@@ -15,7 +15,7 @@ export default function OpportunitiesListTable() {
     useContext(OpportunitiesContext);
 
   return (
-    <table className="w-full">
+    <table className="w-full max-md:hidden">
       <TableHeader columns={columns} />
 
       <tbody>

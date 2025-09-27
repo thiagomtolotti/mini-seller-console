@@ -26,7 +26,7 @@ export default function LeadsListTable({
   const columns = ["Name", "Company", <ScoreHeaderCell />, "Status", "Actions"];
 
   return (
-    <table className="w-full">
+    <table className="w-full max-md:hidden">
       <TableHeader columns={columns} />
 
       <tbody>
