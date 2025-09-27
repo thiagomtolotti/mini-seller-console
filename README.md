@@ -1,14 +1,14 @@
 # Mini Seller Console (React + Tailwind)
 
-**Technical Assessment – CoverPin**
+**Portfolio Project – Mini Seller Console**
 
-> This project is a technical assessment for CoverPin and should **not** be used for commercial purposes.
+> This project is a demonstration of frontend engineering skills and is intended for portfolio purposes only.
 
 ## Overview
 
 A lightweight frontend console to manage Leads and convert them into Opportunities. Built with **React (Vite)** and **Tailwind CSS**, using a local JSON file as the data source.
 
-The live version is avaliable at [mini-seller-console.thiagotolotti.com](https://mini-seller-console.thiagotolotti.com/).
+A live demo is available at [mini-seller-console.thiagotolotti.com](https://mini-seller-console.thiagotolotti.com/).
 
 ## Tech Stack
 
@@ -35,7 +35,7 @@ The live version is avaliable at [mini-seller-console.thiagotolotti.com](https:/
   - Error state (UI)
 - Responsive UI
 - Continuous deployment (CD) to Amazon S3
-- Global setting for simulating errors in \'requests\'
+- Global setting for simulating errors in 'requests'
 
 ## Running the Project
 
