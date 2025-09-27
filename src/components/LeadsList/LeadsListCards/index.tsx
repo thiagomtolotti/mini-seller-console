@@ -4,10 +4,10 @@ import type { Lead } from "@/types/lead";
 
 import { LeadsListContext } from "@/contexts/LeadsListContext";
 
-import LeadsListCardsError from "./LeadsListCardsError";
 import LeadsListCard from "./LeadsListCard";
 
 import CardsSkeleton from "../../ui/CardsSkeleton";
+import ErrorState from "@/components/ui/ErrorState";
 
 interface LeadsListCardsProps {
   selectLead: (lead: Lead) => void;
@@ -22,7 +22,7 @@ export default function LeadsListCards({
 
   return (
     <div className="md:hidden my-12 grid sm:grid-cols-2 gap-8">
-      {error && <LeadsListCardsError />}
+      {error && <ErrorState resourceName="leads" />}
 
       {pendingLeads && <CardsSkeleton />}
 
