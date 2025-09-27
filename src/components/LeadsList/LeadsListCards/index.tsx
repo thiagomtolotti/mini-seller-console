@@ -4,9 +4,10 @@ import type { Lead } from "@/types/lead";
 
 import { LeadsListContext } from "@/contexts/LeadsListContext";
 
-import LeadsListCardsSkeleton from "./LeadsListCardsSkeleton";
 import LeadsListCardsError from "./LeadsListCardsError";
 import LeadsListCard from "./LeadsListCard";
+
+import CardsSkeleton from "../../ui/CardsSkeleton";
 
 interface LeadsListCardsProps {
   selectLead: (lead: Lead) => void;
@@ -23,7 +24,7 @@ export default function LeadsListCards({
     <div className="md:hidden my-12 grid sm:grid-cols-2 gap-8">
       {error && <LeadsListCardsError />}
 
-      {pendingLeads && <LeadsListCardsSkeleton />}
+      {pendingLeads && <CardsSkeleton />}
 
       {leads?.map((lead) => (
         <LeadsListCard

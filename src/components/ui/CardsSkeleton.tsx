@@ -1,5 +1,5 @@
-export default function LeadsListCardsSkeleton() {
-  return Array(50)
+export default function CardsSkeleton() {
+  return Array(10)
     .fill("")
     .map((_, idx) => (
       <div
