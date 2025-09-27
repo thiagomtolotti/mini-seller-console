@@ -6,4 +6,4 @@
 - Use React Testing Library for component testing.
 
 - Mock components using data-testid attributes instead of relying on class names or text content.
-- Split setup, act, and assert sections in tests with blank lines.
+- Split setup, act, and assert sections in tests with blank lines (no comments between the lines).
