@@ -1,0 +1,6 @@
+- Use ES6 syntax and imports.
+- Use functional components and React hooks.
+- Use Tailwind CSS for styling.
+- Use TypeScript for type safety.
+- Use vitest for writing tests.
+- Use React Testing Library for component testing.
