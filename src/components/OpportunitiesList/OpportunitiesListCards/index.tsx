@@ -2,7 +2,7 @@ import { useContext } from "react";
 
 import { OpportunitiesContext } from "@/contexts/OpportunitiesContext";
 
-import OpportunitiesListCard from "./OpporunitiesListCard";
+import OpportunitiesListCard from "./OpportunitiesListCard";
 
 export default function OpportunitiesListCards() {
   const { opportunitiesStore } = useContext(OpportunitiesContext);
