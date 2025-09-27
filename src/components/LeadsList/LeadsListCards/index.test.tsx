@@ -1,10 +1,11 @@
 import { render, screen } from "@testing-library/react";
 import { vi } from "vitest";
+
 import { LeadsListContext } from "@/contexts/LeadsListContext";
 import type { Lead } from "@/types/lead";
-import LeadsListCards from "./index";
 
-// Mock child components
+import LeadsListCards from ".";
+
 vi.mock("./LeadsListCard", () => ({
   default: ({ lead, selectLead, selectOpportunity }: any) => (
     <div
