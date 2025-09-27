@@ -5,5 +5,5 @@
 - Use vitest for writing tests.
 - Use React Testing Library for component testing.
 
-- Write tests in the same folder as the component it tests, with a .test.tsx extension.
-- If the component is not on a dedicated folder, create a folder with the component name, move the file there, rename the file to index.tsx, and add the test file.
+- Mock components using data-testid attributes instead of relying on class names or text content.
+- Split setup, act, and assert sections in tests with blank lines.
