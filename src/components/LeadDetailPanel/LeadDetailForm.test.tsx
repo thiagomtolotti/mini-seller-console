@@ -1,0 +1,89 @@
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import LeadDetailForm from "./LeadDetailForm";
+import { LeadStatus, type Lead } from "@/types/lead.d";
+
+vi.mock("@/hooks/useUpdateLead", () => ({
+  default: () => ({
+    updateLead: vi.fn(),
+    pending: false,
+  }),
+}));
+vi.mock("../ui/Input", () => (props: any) => (
+  <input data-testid="input" {...props} />
+));
+vi.mock("../ui/Button", () => (props: any) => (
+  <button {...props}>{props.children}</button>
+));
+vi.mock("./LabelLine", () => (props: any) => (
+  <div>
+    <span>{props.label}</span>
+    {props.children}
+  </div>
+));
+
+const mockUpdateLead = vi.fn();
+const mockOnClose = vi.fn();
+
+vi.mocked = (mod: any) => mod.default();
+
+vi.mock("@/hooks/useUpdateLead", () => ({
+  __esModule: true,
+  default: () => ({
+    updateLead: mockUpdateLead,
+    pending: false,
+  }),
+}));
+
+const lead: Lead = {
+  id: "1",
+  name: "John Doe",
+  company: "Acme Inc",
+  email: "john@acme.com",
+  source: "Website",
+  score: 42,
+  status: LeadStatus.New,
+};
+
+describe("LeadDetailForm", () => {
+  beforeEach(() => {
+    mockUpdateLead.mockReset();
+    mockOnClose.mockReset();
+  });
+
+  it("submits updated email and status and calls onClose on success", async () => {
+    mockUpdateLead.mockResolvedValueOnce(undefined);
+
+    render(<LeadDetailForm lead={lead} onClose={mockOnClose} />);
+
+    fireEvent.change(document.querySelector("input[type='email']")!, {
+      target: { value: "new@email.com" },
+    });
+    fireEvent.change(document.querySelector("select")!, {
+      target: { value: LeadStatus.Contacted },
+    });
+
+    fireEvent.click(screen.getByRole("button", { name: /save/i }));
+
+    await waitFor(() => {
+      expect(mockUpdateLead).toHaveBeenCalledWith({
+        ...lead,
+        email: "new@email.com",
+        status: LeadStatus.Contacted,
+      });
+      expect(mockOnClose).toHaveBeenCalled();
+    });
+  });
+
+  it("shows error message if updateLead throws", async () => {
+    mockUpdateLead.mockRejectedValueOnce(new Error("Update failed"));
+
+    render(<LeadDetailForm lead={lead} onClose={mockOnClose} />);
+
+    fireEvent.click(screen.getByRole("button", { name: /save/i }));
+
+    await waitFor(() => {
+      expect(screen.getByText(/error: update failed/i)).toBeInTheDocument();
+      expect(mockOnClose).not.toHaveBeenCalled();
+    });
+  });
+});

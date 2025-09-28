@@ -2,9 +2,10 @@ import { useState } from "react";
 
 import { LeadStatus, type Lead } from "@/types/lead.d";
 
+import useUpdateLead from "@/hooks/useUpdateLead";
+
 import Button from "../ui/Button";
 import LabelLine from "./LabelLine";
-import useUpdateLead from "@/hooks/useUpdateLead";
 import Input from "../ui/Input";
 
 interface LeadDetailFormProps {
