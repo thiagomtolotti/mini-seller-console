@@ -5,8 +5,9 @@ import { LeadStatus, type Lead } from "@/types/lead.d";
 import useUpdateLead from "@/hooks/useUpdateLead";
 
 import Button from "../ui/Button";
-import LabelLine from "./LabelLine";
 import Input from "../ui/Input";
+
+import LabelLine from "./LabelLine";
 
 interface LeadDetailFormProps {
   lead: Lead;

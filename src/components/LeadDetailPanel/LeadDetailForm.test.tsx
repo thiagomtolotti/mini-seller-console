@@ -8,18 +8,27 @@ vi.mock("@/hooks/useUpdateLead", () => ({
     pending: false,
   }),
 }));
-vi.mock("../ui/Input", () => (props: any) => (
-  <input data-testid="input" {...props} />
-));
-vi.mock("../ui/Button", () => (props: any) => (
-  <button {...props}>{props.children}</button>
-));
-vi.mock("./LabelLine", () => (props: any) => (
-  <div>
-    <span>{props.label}</span>
-    {props.children}
-  </div>
-));
+vi.mock("../ui/Input", () => ({
+  __esModule: true,
+  default: (props: any) => <input data-testid="input" {...props} />,
+}));
+vi.mock("../ui/Button", () => ({
+  __esModule: true,
+  default: (props: any) => (
+    <button data-testid="button" {...props}>
+      {props.children}
+    </button>
+  ),
+}));
+vi.mock("./LabelLine", () => ({
+  __esModule: true,
+  default: (props: any) => (
+    <div data-testid="label-line">
+      <span>{props.label}</span>
+      {props.children}
+    </div>
+  ),
+}));
 
 const mockUpdateLead = vi.fn();
 const mockOnClose = vi.fn();
