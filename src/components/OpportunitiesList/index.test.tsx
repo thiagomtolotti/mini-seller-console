@@ -13,7 +13,7 @@ vi.mock("./OpportunitiesListTable", () => ({
 }));
 
 describe("OpportunitiesList", () => {
-  it("should render correclty", () => {
+  it("should render correctly", () => {
     render(<OpportunitiesList />);
   });
 });

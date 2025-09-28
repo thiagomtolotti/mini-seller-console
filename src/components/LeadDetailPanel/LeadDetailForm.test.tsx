@@ -2,9 +2,14 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import LeadDetailForm from "./LeadDetailForm";
 import { LeadStatus, type Lead } from "@/types/lead.d";
 
+const mockUpdateLead = vi.fn();
+const mockOnClose = vi.fn();
+
+vi.mocked = (mod: any) => mod.default();
+
 vi.mock("@/hooks/useUpdateLead", () => ({
   default: () => ({
-    updateLead: vi.fn(),
+    updateLead: mockUpdateLead,
     pending: false,
   }),
 }));
@@ -28,19 +33,6 @@ vi.mock("./LabelLine", () => ({
       {props.children}
     </div>
   ),
-}));
-
-const mockUpdateLead = vi.fn();
-const mockOnClose = vi.fn();
-
-vi.mocked = (mod: any) => mod.default();
-
-vi.mock("@/hooks/useUpdateLead", () => ({
-  __esModule: true,
-  default: () => ({
-    updateLead: mockUpdateLead,
-    pending: false,
-  }),
 }));
 
 const lead: Lead = {

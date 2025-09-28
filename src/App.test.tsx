@@ -56,7 +56,7 @@ describe("App", () => {
     fireEvent.click(screen.getByTestId("leads-tab"));
 
     expect(screen.getByTestId("leads-list")).toBeInTheDocument();
-    expect(screen.queryByTestId("opportunites-list")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("opportunities-list")).not.toBeInTheDocument();
     expect(screen.getByText(/Current: leads/i)).toBeInTheDocument();
   });
 });
