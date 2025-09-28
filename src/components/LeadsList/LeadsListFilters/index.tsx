@@ -1,9 +1,11 @@
 import { useContext } from "react";
-import FilterButton from "./FilterButton";
-import SearchButton from "./SearchButton";
+
 import { LeadsListContext } from "@/contexts/LeadsListContext";
 
-export default function LeadsListTableFilters() {
+import FilterButton from "./FilterButton";
+import SearchButton from "./SearchButton";
+
+export default function LeadsListFilters() {
   const { filters, setFilters } = useContext(LeadsListContext);
 
   return (

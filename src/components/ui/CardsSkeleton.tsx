@@ -5,6 +5,7 @@ export default function CardsSkeleton() {
       <div
         key={idx}
         className="w-full h-64 bg-white/10 animate-pulse rounded-lg"
+        role="presentation"
       />
     ));
 }

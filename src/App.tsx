@@ -1,5 +1,7 @@
+import { View } from "./types/View.d";
 import { useState } from "react";
 
+import { ConfigurationsProvider } from "./contexts/ConfigurationsProvider";
 import { OpportunitiesProvider } from "./contexts/OpportunitiesProvider";
 import { LeadsListProvider } from "./contexts/LeadsListProvider";
 
@@ -7,12 +9,9 @@ import SelectViewTabs from "./components/layout/SelectViewTabs";
 
 import LeadsList from "./components/LeadsList";
 import OpportunitiesList from "./components/OpportunitiesList";
-import { ConfigurationsProvider } from "./contexts/ConfigurationsProvider";
 
 function App() {
-  const [currentView, setCurrentView] = useState<"leads" | "opportunities">(
-    "leads"
-  );
+  const [currentView, setCurrentView] = useState<View>(View.Leads);
 
   return (
     <Providers>
@@ -25,9 +24,9 @@ function App() {
           setCurrentView={setCurrentView}
         />
 
-        {currentView === "leads" && <LeadsList />}
+        {currentView === View.Leads && <LeadsList />}
 
-        {currentView === "opportunities" && <OpportunitiesList />}
+        {currentView === View.Opportunities && <OpportunitiesList />}
       </div>
     </Providers>
   );

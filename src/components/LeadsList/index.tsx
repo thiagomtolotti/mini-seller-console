@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import type { Lead } from "@/types/lead";
 
-import LeadsListTableFilters from "./LeadsListFilters";
+import LeadsListFilters from "./LeadsListFilters";
 import LeadsListTable from "./LeadsListTable";
 import LeadDetailPanel from "../LeadDetailPanel";
 
@@ -17,7 +17,7 @@ export default function LeadsList() {
 
   return (
     <>
-      <LeadsListTableFilters />
+      <LeadsListFilters />
 
       <LeadsListTable
         selectLead={setSelectedLead}
