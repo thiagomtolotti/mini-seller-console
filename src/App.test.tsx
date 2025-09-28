@@ -27,21 +27,6 @@ vi.mock("./components/OpportunitiesList", () => ({
   __esModule: true,
   default: () => <div data-testid="opportunities-list" />,
 }));
-vi.mock("./contexts/OpportunitiesProvider", () => ({
-  OpportunitiesProvider: ({ children }: { children: React.ReactNode }) => (
-    <>{children}</>
-  ),
-}));
-vi.mock("./contexts/LeadsListProvider", () => ({
-  LeadsListProvider: ({ children }: { children: React.ReactNode }) => (
-    <>{children}</>
-  ),
-}));
-vi.mock("./contexts/ConfigurationsProvider", () => ({
-  ConfigurationsProvider: ({ children }: { children: React.ReactNode }) => (
-    <>{children}</>
-  ),
-}));
 
 describe("App", () => {
   it("renders LeadsList by default", () => {
